@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     EditText linkpodaj;
     Button szukaj;
     TextView tekst;
-
+    URL linkacz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             // Create a URL for the desired page
 
-                            URL url = new URL(linkpodaj.toString()); //My text file location
+                            URL url = new URL("https://pastebin.com/raw/gum3VcR8"); //My text file location
                             //First open the connection
                             HttpURLConnection conn=(HttpURLConnection) url.openConnection();
                             conn.setConnectTimeout(60000); // timing out in a minute
