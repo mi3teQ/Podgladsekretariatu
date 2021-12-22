@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,13 +29,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText linkpodaj, linkpodaj2;
+    EditText linkpodaj, linkpodaj2, szukajlista;
     Button szukaj;
     TextView tekst;
     String cos;
     URL linkacz;
     ListView lista;
     private String[] lv_arr = {};
+    ArrayAdapter Arrayadapterr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         szukaj = (Button) findViewById(R.id.btn_zatwierdz);
         tekst = (TextView) findViewById(R.id.tekst);
         lista = (ListView) findViewById(R.id.lista);
+        szukajlista = (EditText) findViewById(R.id.szukajlista);
 
         //ArrayList<String> arrayList = new ArrayList<String>();
         //arrayList.add("JAVA");
@@ -104,8 +108,10 @@ public class MainActivity extends AppCompatActivity {
                             public void run(){
                                 tekst.setText(urls.get(0)); // My TextFile has 3 lines
 
-                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, urls);
-                                lista.setAdapter(arrayAdapter);
+                                ArrayAdapter<String> Arrayadapterr = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, urls);
+                                lista.setAdapter(Arrayadapterr);
+
+
                             }
 
                         });
@@ -126,6 +132,22 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }).start();
+            }
+        });
+        szukajlista.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+               // (MainActivity.this).Arrayadapterr.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
     }
