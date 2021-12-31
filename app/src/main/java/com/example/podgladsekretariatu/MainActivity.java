@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText linkpodaj, linkpodaj2, szukajlista;
     Button szukaj;
-    TextView tekst;
+
     String cos;
     URL linkacz;
     ListView lista;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         linkpodaj = (EditText) findViewById(R.id.edittext_podajlink);
         szukaj = (Button) findViewById(R.id.btn_zatwierdz);
-        tekst = (TextView) findViewById(R.id.tekst);
+
         lista = (ListView) findViewById(R.id.lista);
         szukajlista = (EditText) findViewById(R.id.szukajlista);
 
@@ -106,10 +106,11 @@ public class MainActivity extends AppCompatActivity {
 
                         MainActivity.this.runOnUiThread(new Runnable(){
                             public void run(){
-                                tekst.setText(urls.get(0)); // My TextFile has 3 lines
+                                //tekst.setText(urls.get(0)); // My TextFile has 3 lines
 
-                                ArrayAdapter<String> Arrayadapterr = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, urls);
+                                ArrayAdapter Arrayadapterr = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, urls);
                                 lista.setAdapter(Arrayadapterr);
+                                lista.setTextFilterEnabled(true);
 
 
                             }
@@ -142,11 +143,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-               // (MainActivity.this).Arrayadapterr.getFilter().filter(charSequence);
+                (MainActivity.this).Arrayadapterr.getFilter().filter(charSequence);
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable charSequence) {
 
             }
         });
